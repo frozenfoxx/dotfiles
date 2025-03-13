@@ -1,3 +1,21 @@
-- clean: []
-- link: {}
-- shell: []
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.vim: vim
+    ~/.vimrc: vimrc
+
+- create:
+    - ~/Documents/repos
+    - ~/.vim/undo-history
+- create:
+    ~/.ssh:
+      mode: 0700
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
