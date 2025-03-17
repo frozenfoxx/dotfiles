@@ -30,7 +30,8 @@
 - shell:
   - [chsh -s $(which zsh), Making zsh the default shell...]
   - 
-    command: bash addons.sh, Installing addons...
+    description: Installing addons...
+    command: bash addons.sh
     stdout: true
     stderr: true
   - [git submodule update --init --recursive, Installing submodules...]
