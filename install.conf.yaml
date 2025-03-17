@@ -7,8 +7,6 @@
 
 - link:
     # Shell
-    ~/.aliases: shell/.aliases
-    ~/.functions: shell/.functions
     ~/.zshrc: shell/.zshrc
 
     # Git
@@ -18,12 +16,10 @@
     ~/.tmux.conf: tmux/.tmux.conf
 
     # Vim
-    ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
 
 - create:
     - ~/Documents/repos
-    - ~/.vim/undo-history
 
 - create:
     ~/.ssh:
