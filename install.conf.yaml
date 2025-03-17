@@ -5,6 +5,20 @@
 
 - clean: ['~']
 
+- shell:
+  - if: '[ `uname -s` = Darwin]'
+    description: Installing Homebrew...
+    command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    stdin: true
+    stdout: true
+    stderror: true
+  -
+    description: Installing ohmyzsh...
+    command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    stdin: true
+    stdout: true
+    stderr: true
+
 - link:
     # Shell
     ~/.aliases: shell/.aliases
