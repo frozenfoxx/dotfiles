@@ -26,7 +26,7 @@ fi
 if ! command -v pyenv &> /dev/null; then
   echo "Installing PyEnv..."
   curl -fsSL https://pyenv.run | bash
-  git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+  git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 fi
 
 # Change default shell
