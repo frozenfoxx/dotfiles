@@ -45,7 +45,7 @@ install_homebrew()
 ## Install Oh-My-Zsh
 install_omz()
 {
-  if ! fn_exists(omz) &> /dev/null; then
+  if ! fn_exists omz &> /dev/null; then
     echo "Installing oh-my-zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   else
@@ -57,7 +57,7 @@ install_omz()
 ## Install PyEnv
 install_pyenv()
 {
-  if ! fn_exists(pyenv) &> /dev/null; then
+  if ! fn_exists pyenv &> /dev/null; then
     echo "Installing PyEnv..."
     curl -fsSL https://pyenv.run | bash
     git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
