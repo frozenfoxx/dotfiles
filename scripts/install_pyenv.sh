@@ -15,6 +15,7 @@ fn_exists()
 install_pyenv()
 {
   if ! fn_exists pyenv &> /dev/null; then
+    rm -rf ~/.pyenv
     echo "Installing PyEnv..."
     curl -fsSL https://pyenv.run | bash
   fi
