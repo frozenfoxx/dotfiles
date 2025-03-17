@@ -1,3 +1,4 @@
+# Common
 - defaults:
     link:
       create: true
@@ -5,28 +6,17 @@
 
 - clean: ['~']
 
-- shell:
-  - if: '[ `uname -s` = Darwin]'
-    description: Installing Homebrew...
-    command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    stdin: true
-    stdout: true
-    stderror: true
-  -
-    description: Installing ohmyzsh...
-    command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    stdin: true
-    stdout: true
-    stderr: true
+- create:
+    ~/.ssh:
+      mode: 0700
+    ~/Documents/repos:
 
 - link:
-    # Shell
-    ~/.aliases: shell/.aliases
-    ~/.profile: shell/.profile
-    ~/.zshrc: shell/.zshrc
-
     # Git
     ~/.gitconfig: git/.gitconfig
+
+    # Shell
+    ~/.profile: shell/.profile
 
     # Tmux
     ~/.tmux.conf: tmux/.tmux.conf
@@ -34,18 +24,86 @@
     # Vim
     ~/.vimrc: vim/.vimrc
 
-- create:
-    - ~/Documents/repos
+    # Zsh
+    ~/.zshrc: zsh/.zshrc
+    ~/.oh-my-zsh/custom/:
+      glob: true
+      path: zsh/custom/*.zsh
+    #~/.oh-my-zsh/custom/plugins/:
+    #  glob: true
+    #  path: zsh/custom/plugins/*
+  # globs dont work with dotbot when there's only 1 folder
+    #~/.oh-my-zsh/custom/themes/powerlevel10k:
+    #  glob: true
+    #  path: zsh/custom/themes/powerlevel10k
 
-- create:
-    ~/.ssh:
-      mode: 0700
+- shell:
+  - 
+    description: Installing submodules...
+    command: git submodule update --init --recursive
+
+  -
+    description: Install oh-my-zsh
+    command: scripts/install_omz.sh
+    stdout: true
+    stdin: true
+
+  -
+    description: Install PyEnv
+    command: scripts/install_pyenv.sh
+    stdout: true
+    stdin: true
+
+- clean:
+    - ~/.oh-my-zsh/custom
+    - ~/.oh-my-zsh/custom/plugins/
+    - ~/.oh-my-zsh/custom/themes/
+
+# Linux
+- defaults:
+    link:
+      if: '[ "$(uname -s)" = "Linux" ]'
+    shell:
+      if: '[ "$(uname -s)" = "Linux" ]'
+
+- link:
+    ~/.config/k9s:
+      path: k8s/k9s.yaml
+      force: true
 
 - shell:
   -
-    description: Installing addons...
-    command: bash addons.sh
-    stdin: true
+    description: Install packages (Linux)
+    command: scripts/install_packages_linux.sh
+
+# macOS
+- defaults:
+    link:
+      if: '[ "$(uname -s)" = "Darwin" ]'
+    shell:
+      if: '[ "$(uname -s)" = "Darwin" ]'
+
+- link:
+    ~/Library/KeyBindings/DefaultKeyBinding.dict:
+      path: mac/DefaultKeyBindings.dict
+      create: true
+      force: true
+    ~/Library/Application Support/k9s/config.yml:
+      path: k8s/k9s.yaml
+      force: true
+
+- shell:
+  -
+    description: Install Homebrew (macOS)
+    command: scripts/install_homebrew.sh
     stdout: true
-    stderr: true
-  - [git submodule update --init --recursive, Installing submodules...]
+    stdin: true
+
+  -
+    description: Stop .DS_Store files on network drives
+    command: |
+      if [ "$(uname -s)" = "Darwin" ]; then
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+      fi
+    stdout: true
+    stdin: true
