@@ -16,7 +16,9 @@
     ~/.gitconfig: git/.gitconfig
 
     # Shell
-    ~/.profile: shell/.profile
+    ~/.profile:
+      path: shell/.profile
+      force: true
 
     # Tmux
     ~/.tmux.conf: tmux/.tmux.conf
@@ -25,7 +27,9 @@
     ~/.vimrc: vim/.vimrc
 
     # Zsh
-    ~/.zshrc: zsh/.zshrc
+    ~/.zshrc:
+      path: zsh/.zshrc
+      force: true
     ~/.oh-my-zsh/custom/:
       glob: true
       path: zsh/custom/*.zsh
