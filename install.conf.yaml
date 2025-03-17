@@ -28,5 +28,9 @@
       mode: 0700
 
 - shell:
-  - [bash addons.sh, Installing addons...]
+  - [chsh -s $(which zsh), Making zsh the default shell...]
+  - 
+    command: bash addons.sh, Installing addons...
+    stdout: true
+    stderr: true
   - [git submodule update --init --recursive, Installing submodules...]
