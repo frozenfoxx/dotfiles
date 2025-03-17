@@ -5,22 +5,21 @@ LC_ALL="C"
 
 # Functions
 
-## Change shell
-change_shell()
+## Check shell
+check_shell()
 {
   if [[ ! $0 = "-zsh" ]]; then
-    echo "Changing default shell to zsh..."
+    echo "Shell: $(echo $0 | tr -d '-')"
 
-    # Set shell to zsh if installed or error out
+    # Check if zsh is installed
     if [[ -f $(which zsh) ]]; then
-      chsh -s $(which zsh)
-      . ~/.zshrc
+      echo 'Please change your shell to zsh with "chsh -s $(which zsh)" and relogin'
     else
-      echo "zsh is not installed, please install it first!"
+      echo "zsh is not installed. Please install it first, set it to default, and relogin"
       exit 1
     fi
   else
-    echo 'Default shell is zsh'
+    echo "Shell: zsh"
   fi
 }
 
@@ -71,6 +70,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   install_homebrew
 fi
 
-change_shell
+check_shell
 install_omz
 install_pyenv

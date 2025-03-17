@@ -8,6 +8,7 @@
 - link:
     # Shell
     ~/.aliases: shell/.aliases
+    ~/.profile: shell/.profile
     ~/.zshrc: shell/.zshrc
 
     # Git
@@ -27,5 +28,5 @@
       mode: 0700
 
 - shell:
-  - [bash requirements.sh, Checking requirements]
-  - [git submodule update --init --recursive, Installing submodules]
+  - [bash addons.sh, Installing addons...]
+  - [git submodule update --init --recursive, Installing submodules...]
