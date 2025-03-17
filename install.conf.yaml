@@ -6,16 +6,29 @@
 - clean: ['~']
 
 - link:
-    ~/.tmux.conf: tmux.conf
-    ~/.vim: vim
-    ~/.vimrc: vimrc
+    # Shell
+    ~/.aliases: shell/.aliases
+    ~/.functions: shell/.functions
+    ~/.zshrc: shell/.zshrc
+
+    # Git
+    ~/.gitconfig: git/.gitconfig
+
+    # Tmux
+    ~/.tmux.conf: tmux/.tmux.conf
+
+    # Vim
+    ~/.vim: vim/.vim
+    ~/.vimrc: vim/.vimrc
 
 - create:
     - ~/Documents/repos
     - ~/.vim/undo-history
+
 - create:
     ~/.ssh:
       mode: 0700
 
 - shell:
+  - [sh requirements.sh, Checking requirements]
   - [git submodule update --init --recursive, Installing submodules]
