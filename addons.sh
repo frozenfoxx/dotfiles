@@ -13,7 +13,9 @@ check_shell()
 
     # Check if zsh is installed
     if [[ -f $(which zsh) ]]; then
-      echo 'Please change your shell to zsh with "chsh -s $(which zsh)" and relogin'
+      echo "Changing default shell to zsh, input user password:"
+      chsh -s $(which zsh)
+      . ~/.zshrc
     else
       echo "zsh is not installed. Please install it first, set it to default, and relogin"
       exit 1
