@@ -7,6 +7,7 @@
 
 - link:
     # Shell
+    ~/.aliases: shell/.aliases
     ~/.zshrc: shell/.zshrc
 
     # Git
@@ -26,5 +27,5 @@
       mode: 0700
 
 - shell:
-  - [sh requirements.sh, Checking requirements]
+  - [bash requirements.sh, Checking requirements]
   - [git submodule update --init --recursive, Installing submodules]
