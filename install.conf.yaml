@@ -70,6 +70,9 @@
     shell:
       if: '[ "$(uname -s)" = "Linux" ]'
 
+- create:
+    ~/.config:
+
 - link:
     ~/.config/k9s:
       path: k8s/k9s.yaml
@@ -84,8 +87,9 @@
 - defaults:
     link:
       if: '[ "$(uname -s)" = "Darwin" ]'
-    shell:
-      if: '[ "$(uname -s)" = "Darwin" ]'
+
+- create:
+    ~/Library/Application Support/k9s:
 
 - link:
     ~/Library/KeyBindings/DefaultKeyBinding.dict:
@@ -100,11 +104,13 @@
   -
     description: Install Homebrew (macOS)
     command: scripts/install_homebrew.sh
+    if: '[ "$(uname -s)" = "Darwin" ]'
     stdout: true
     stdin: true
 
   -
     description: Stop .DS_Store files on network drives
     command: defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+    if: '[ "$(uname -s)" = "Darwin" ]'
     stdout: true
     stdin: true
