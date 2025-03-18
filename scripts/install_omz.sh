@@ -9,13 +9,9 @@ ROOT_DIR=${ROOT_DIR:-..}
 ## Install Oh-My-Zsh
 install_ohmyzsh()
 {
-  if [ -d ~/.oh-my-zsh ]; then
-    if [ ! -d ~/.oh-my-zsh/.git ]; then
-      rm -rf ~/.oh-my-zsh
-    fi
+  if ! [ -d ~/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL ${OMZ_INSTALLER_URL})" --keep-zshrc ---unattended
   fi
-
-  sh -c "$(curl -fsSL ${OMZ_INSTALLER_URL})" --keep-zshrc ---unattended || :
 }
 
 # Logic
