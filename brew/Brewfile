@@ -1,5 +1,0 @@
-tap "homebrew/bundle"
-brew "go-task"
-brew "jq"
-brew "vim"
-brew "yq"
