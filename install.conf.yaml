@@ -65,9 +65,9 @@
 
 # Linux
 - defaults:
-    link:
+    create:
       if: '[ "$(uname -s)" = "Linux" ]'
-    shell:
+    link:
       if: '[ "$(uname -s)" = "Linux" ]'
 
 - create:
@@ -78,14 +78,13 @@
       path: k8s/k9s.yaml
       force: true
 
-- shell:
-  -
-    description: Install packages (Linux)
-    command: scripts/install_packages_linux.sh
-
 # macOS
 - defaults:
+    create:
+      if: '[ "$(uname -s)" = "Darwin" ]'
     link:
+      if: '[ "$(uname -s)" = "Darwin" ]'
+    shell:
       if: '[ "$(uname -s)" = "Darwin" ]'
 
 - create:
@@ -101,13 +100,6 @@
       force: true
 
 - shell:
-  -
-    description: Install Homebrew (macOS)
-    command: scripts/install_homebrew.sh
-    if: '[ "$(uname -s)" = "Darwin" ]'
-    stdout: true
-    stdin: true
-
   -
     description: Stop .DS_Store files on network drives
     command: defaults write com.apple.desktopservices DSDontWriteNetworkStores true
