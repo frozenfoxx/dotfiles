@@ -1,6 +1,8 @@
 # Dotfiles
 =================
 
+[![Publish Docker image](https://github.com/frozenfoxx/dotfiles/actions/workflows/publish.yml/badge.svg)](https://github.com/frozenfoxx/dotfiles/actions/workflows/publish.yml)
+
 This is a dotfile repository managed by [Dotbot][dotbot].
 
 To keep submodules at their proper versions, you could include something like
