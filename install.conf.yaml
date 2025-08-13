@@ -58,6 +58,12 @@
     stdout: true
     stdin: true
 
+  -
+    description: Install NVM
+    command: scripts/install_nvm.sh
+    stdout: true
+    stdin: true
+
 - clean:
     - ~/.oh-my-zsh/custom
     - ~/.oh-my-zsh/custom/plugins/
