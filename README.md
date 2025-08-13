@@ -8,9 +8,6 @@ This is a dotfile repository managed by [Dotbot][dotbot].
 To keep submodules at their proper versions, you could include something like
 `git submodule update --init --recursive` in your `install.conf.yaml`.
 
-To upgrade your submodules to their latest versions, you could periodically run
-`git submodule update --init --remote`.
-
 # Requirements
 -------
 Change shell to zsh and login in again:
@@ -27,6 +24,16 @@ Clone this repository and install:
 git clone https://github.com/frozenfoxx/dotfiles
 cd dotfiles
 ./install
+```
+
+# Updating
+-------
+Run the following to update dotbot to the latest version:
+
+```shell
+git submodule update --remote dotbot
+git status
+git commit -a -m 'Updated dotbot'
 ```
 
 License
